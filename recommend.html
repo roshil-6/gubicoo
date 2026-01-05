@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Get AI Tool Recommendations - Gubicoo</title>
+    <meta name="description" content="Get personalized AI tool recommendations based on your needs, budget, and use case. Find the perfect AI tools for your workflow." />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon/favicon.png" type="image/png" />
+    <link rel="icon" href="favicon/cub-cog-logo.png" type="image/png" />
+    <link rel="icon" href="favicon/fevicon.ic.png" type="image/png" />
+    <link rel="icon" href="favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="favicon/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" sizes="180x180" />
+    <link rel="icon" href="icon/gubicoo-logo.png.png" type="image/png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Top App Bar -->
+        <header class="app-header">
+            <div class="header-content">
+                <a href="index.html" class="back-link-header">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </a>
+                <h2 class="header-title">Find Your AI Tools</h2>
+                <div style="width: 40px;"></div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Mode Selection -->
+            <div class="mode-selection" id="modeSelection">
+                <div class="mode-intro">
+                    <h1 class="mode-title">Tell me what you want to do.<br>I'll tell you what to use.</h1>
+                    <p class="mode-subtitle">Choose your path to get personalized AI tool recommendations</p>
+                </div>
+
+                <div class="mode-cards">
+                    <div class="mode-card" data-mode="quick">
+                        <div class="mode-card-icon quick">
+                            <span class="material-symbols-outlined">bolt</span>
+                        </div>
+                        <h3 class="mode-card-title">Quick Intent Mode</h3>
+                        <p class="mode-card-desc">Fast & simple. Get recommendations in seconds.</p>
+                        <div class="mode-card-badge">80% of users</div>
+                    </div>
+
+                    <div class="mode-card" data-mode="guided">
+                        <div class="mode-card-icon guided">
+                            <span class="material-symbols-outlined">psychology</span>
+                        </div>
+                        <h3 class="mode-card-title">Guided Advisor Mode</h3>
+                        <p class="mode-card-desc">Deeper questions for better recommendations.</p>
+                        <div class="mode-card-badge">Startups & Companies</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Intent Mode -->
+            <div class="recommendation-flow" id="quickMode" style="display: none;">
+                <div class="flow-step" id="quickStep1">
+                    <h2 class="step-title">What is your purpose?</h2>
+                    <div class="option-cards">
+                        <button class="option-card" data-value="personal">
+                            <span class="option-icon"><span class="material-symbols-outlined">school</span></span>
+                            <span class="option-label">Personal use</span>
+                        </button>
+                        <button class="option-card" data-value="startup">
+                            <span class="option-icon"><span class="material-symbols-outlined">rocket_launch</span></span>
+                            <span class="option-label">Startup / Founder</span>
+                        </button>
+                        <button class="option-card" data-value="enterprise">
+                            <span class="option-icon"><span class="material-symbols-outlined">business</span></span>
+                            <span class="option-label">Existing organisation</span>
+                        </button>
+                        <button class="option-card" data-value="developer">
+                            <span class="option-icon"><span class="material-symbols-outlined">code</span></span>
+                            <span class="option-label">Developer / Tech team</span>
+                        </button>
+                        <button class="option-card" data-value="creator">
+                            <span class="option-icon"><span class="material-symbols-outlined">palette</span></span>
+                            <span class="option-label">Creator / Designer</span>
+                        </button>
+                        <button class="option-card" data-value="analyst">
+                            <span class="option-icon"><span class="material-symbols-outlined">analytics</span></span>
+                            <span class="option-label">Analyst / Researcher</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flow-step" id="quickStep2" style="display: none;">
+                    <h2 class="step-title">What do you want help with? <span class="step-subtitle">(Select all that apply)</span></h2>
+                    <div class="option-cards multi-select">
+                        <button class="option-card" data-value="writing">
+                            <span class="option-icon"><span class="material-symbols-outlined">edit</span></span>
+                            <span class="option-label">Writing & content</span>
+                        </button>
+                        <button class="option-card" data-value="coding">
+                            <span class="option-icon"><span class="material-symbols-outlined">terminal</span></span>
+                            <span class="option-label">Coding & development</span>
+                        </button>
+                        <button class="option-card" data-value="design">
+                            <span class="option-icon"><span class="material-symbols-outlined">palette</span></span>
+                            <span class="option-label">Design & images</span>
+                        </button>
+                        <button class="option-card" data-value="video">
+                            <span class="option-icon"><span class="material-symbols-outlined">movie</span></span>
+                            <span class="option-label">Video / audio</span>
+                        </button>
+                        <button class="option-card" data-value="automation">
+                            <span class="option-icon"><span class="material-symbols-outlined">bolt</span></span>
+                            <span class="option-label">Automation</span>
+                        </button>
+                        <button class="option-card" data-value="research">
+                            <span class="option-icon"><span class="material-symbols-outlined">search</span></span>
+                            <span class="option-label">Research</span>
+                        </button>
+                        <button class="option-card" data-value="marketing">
+                            <span class="option-icon"><span class="material-symbols-outlined">trending_up</span></span>
+                            <span class="option-label">Marketing</span>
+                        </button>
+                        <button class="option-card" data-value="support">
+                            <span class="option-icon"><span class="material-symbols-outlined">chat</span></span>
+                            <span class="option-label">Customer support</span>
+                        </button>
+                    </div>
+                    <button class="btn-primary get-recommendations-btn" id="quickGetRecommendations" style="display: none; margin-top: 1.5rem;">
+                        Get My Recommendations
+                    </button>
+                </div>
+            </div>
+
+            <!-- Guided Advisor Mode -->
+            <div class="recommendation-flow" id="guidedMode" style="display: none;">
+                <div class="flow-step" id="guidedStep1">
+                    <h2 class="step-title">Who are you?</h2>
+                    <div class="option-cards">
+                        <button class="option-card" data-value="individual">
+                            <span class="option-label">Individual</span>
+                            <span class="option-description">Personal use, solo projects</span>
+                        </button>
+                        <button class="option-card" data-value="startup-0-10">
+                            <span class="option-label">Early-stage Startup</span>
+                            <span class="option-description">Solo founder to small team</span>
+                        </button>
+                        <button class="option-card" data-value="startup-10-50">
+                            <span class="option-label">Growing Startup</span>
+                            <span class="option-description">Small to medium team</span>
+                        </button>
+                        <button class="option-card" data-value="sme-50-200">
+                            <span class="option-label">Small to Medium Business</span>
+                            <span class="option-description">Medium-sized organization</span>
+                        </button>
+                        <button class="option-card" data-value="enterprise-200">
+                            <span class="option-label">Large Enterprise</span>
+                            <span class="option-description">Large organization with many employees</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flow-step" id="guidedStep2" style="display: none;">
+                    <h2 class="step-title">What industry are you in?</h2>
+                    <div class="option-cards">
+                        <button class="option-card" data-value="tech">Tech / SaaS</button>
+                        <button class="option-card" data-value="marketing">Marketing agency</button>
+                        <button class="option-card" data-value="ecommerce">E-commerce</button>
+                        <button class="option-card" data-value="education">Education</button>
+                        <button class="option-card" data-value="finance">Finance</button>
+                        <button class="option-card" data-value="healthcare">Healthcare</button>
+                        <button class="option-card" data-value="legal">Legal</button>
+                        <button class="option-card" data-value="media">Media & content</button>
+                        <button class="option-card" data-value="manufacturing">Manufacturing</button>
+                    </div>
+                </div>
+
+                <div class="flow-step" id="guidedStep3" style="display: none;">
+                    <h2 class="step-title">What does your team need? <span class="step-subtitle">(Select all that apply)</span></h2>
+                    <div class="option-cards multi-select">
+                        <button class="option-card" data-value="coding">Faster coding</button>
+                        <button class="option-card" data-value="writing">Content creation</button>
+                        <button class="option-card" data-value="design">Design</button>
+                        <button class="option-card" data-value="support">Customer support</button>
+                        <button class="option-card" data-value="documentation">Internal documentation</button>
+                        <button class="option-card" data-value="sales">Sales & CRM</button>
+                        <button class="option-card" data-value="automation">Automation</button>
+                        <button class="option-card" data-value="analysis">Data analysis</button>
+                        <button class="option-card" data-value="video">Video marketing</button>
+                    </div>
+                    <button class="btn-primary continue-btn" id="guidedContinue3" style="display: none; margin-top: 1.5rem;">
+                        Continue
+                    </button>
+                </div>
+
+                <div class="flow-step" id="guidedStep4" style="display: none;">
+                    <h2 class="step-title">What's your budget comfort?</h2>
+                    <div class="option-cards">
+                        <button class="option-card" data-value="free">₹0 (Free only)</button>
+                        <button class="option-card" data-value="low">₹1k–3k / month</button>
+                        <button class="option-card" data-value="medium">₹3k–10k / month</button>
+                        <button class="option-card" data-value="high">Budget doesn't matter</button>
+                    </div>
+                </div>
+
+                <div class="flow-step" id="guidedStep5" style="display: none;">
+                    <h2 class="step-title">What's your AI maturity level?</h2>
+                    <div class="option-cards">
+                        <button class="option-card" data-value="beginner">Beginner (never used AI)</button>
+                        <button class="option-card" data-value="intermediate">Intermediate</button>
+                        <button class="option-card" data-value="advanced">Advanced</button>
+                        <button class="option-card" data-value="ai-first">AI-first company</button>
+                    </div>
+                    <button class="btn-primary get-recommendations-btn" id="guidedGetRecommendations" style="display: none; margin-top: 1.5rem;">
+                        Get My Recommendations
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Panel -->
+            <div class="results-panel" id="resultsPanel" style="display: none;">
+                <div class="results-header">
+                    <h2 class="results-title">Your AI Tool Recommendations</h2>
+                    <button class="restart-btn" id="restartBtn">
+                        <span class="material-symbols-outlined">refresh</span>
+                        Start Over
+                    </button>
+                </div>
+
+                <div class="results-content">
+                    <!-- Primary Stack -->
+                    <div class="result-section primary-stack">
+                        <h3 class="result-section-title">
+                            <span class="material-symbols-outlined">star</span>
+                            Primary Stack (Must Have)
+                        </h3>
+                        <div class="recommended-tools" id="primaryTools">
+                            <!-- Primary tools will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Optional Tools -->
+                    <div class="result-section optional-tools" id="optionalSection" style="display: none;">
+                        <h3 class="result-section-title">
+                            <span class="material-symbols-outlined">add_circle</span>
+                            Optional Tools
+                        </h3>
+                        <div class="recommended-tools" id="optionalTools">
+                            <!-- Optional tools will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Should You Pay? -->
+                    <div class="result-section verdict-section">
+                        <h3 class="result-section-title">
+                            <span class="material-symbols-outlined">info</span>
+                            Should You Pay?
+                        </h3>
+                        <div class="verdict-content" id="verdictContent">
+                            <!-- Verdict will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        // Recommendation system logic
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeRecommendationSystem();
+        });
+    </script>
+</body>
+</html>
+

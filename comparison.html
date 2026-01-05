@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Compare AI Tools Side-by-Side - Gubicoo</title>
+    <meta name="description" content="Compare AI tools side-by-side. See pricing, features, and differences to make the best choice for your needs." />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon/favicon.png" type="image/png" />
+    <link rel="icon" href="favicon/cub-cog-logo.png" type="image/png" />
+    <link rel="icon" href="favicon/fevicon.ic.png" type="image/png" />
+    <link rel="icon" href="favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="favicon/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" sizes="180x180" />
+    <link rel="icon" href="icon/gubicoo-logo.png.png" type="image/png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="back-link">← Back</a>
+            <h1 class="site-title">Compare AI Tools</h1>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section id="compare-tools" class="compare-section">
+                <h2 class="section-title">Compare AI Tools</h2>
+
+                <div class="compare-controls">
+                    <div class="compare-selectors" id="toolSelectors">
+                        <!-- Tool selectors will be added dynamically -->
+                    </div>
+                    <div class="compare-actions">
+                        <button class="add-tool-btn" id="addToolBtn" title="Add another tool (max 5)">
+                            <span class="material-symbols-outlined">add</span>
+                            <span>Add Tool</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="compare-table-wrapper">
+                    <table class="compare-table" id="compareTable">
+                        <thead id="compareTableHead">
+                            <tr>
+                                <th>Feature</th>
+                                <!-- Tool headers will be added dynamically -->
+                            </tr>
+                        </thead>
+                        <tbody id="compareBody">
+                            <tr>
+                                <td colspan="2" class="compare-placeholder">
+                                    <div class="placeholder-content">
+                                        <span class="material-symbols-outlined">compare_arrows</span>
+                                        <p>Select at least two tools to compare</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 gubicoo Lens. Honest comparisons, no fluff.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        // Load comparison page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMultiToolComparison();
+        });
+    </script>
+</body>
+</html>

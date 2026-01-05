@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title id="pageTitle">Tool Details - Gubicoo</title>
+    <meta name="description" content="Detailed AI tool review with pricing, features, and honest verdict. Compare AI tools and find the right one for your needs." />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon/favicon.png" type="image/png" />
+    <link rel="icon" href="favicon/cub-cog-logo.png" type="image/png" />
+    <link rel="icon" href="favicon/fevicon.ic.png" type="image/png" />
+    <link rel="icon" href="favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="favicon/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" sizes="180x180" />
+    <link rel="icon" href="icon/gubicoo-logo.png.png" type="image/png" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="back-link">← Back to Home</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Hero Section -->
+            <div class="tool-detail-hero" id="toolDetailHero">
+                <!-- Will be populated by JavaScript -->
+            </div>
+
+            <!-- Quick Stats Bar -->
+            <div class="tool-stats-bar" id="toolStatsBar">
+                <!-- Will be populated by JavaScript -->
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="tool-detail-tabs">
+                <button class="tab-btn active" data-tab="overview">
+                    <span class="material-symbols-outlined">info</span>
+                    Overview
+                </button>
+                <button class="tab-btn" data-tab="pricing">
+                    <span class="material-symbols-outlined">attach_money</span>
+                    Pricing
+                </button>
+                <button class="tab-btn" data-tab="features">
+                    <span class="material-symbols-outlined">star</span>
+                    Features
+                </button>
+                <button class="tab-btn" data-tab="recommendations">
+                    <span class="material-symbols-outlined">recommend</span>
+                    Who It's For
+                </button>
+                <button class="tab-btn" data-tab="verdict">
+                    <span class="material-symbols-outlined">gavel</span>
+                    Verdict
+                </button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tool-detail-content">
+                <!-- Overview Tab -->
+                <div class="tab-content active" id="overview-tab">
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">description</span>
+                            What This Tool Does
+                        </h2>
+                        <div class="detail-text-content" id="toolDescription"></div>
+                    </section>
+
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">category</span>
+                            Category
+                        </h2>
+                        <div class="category-badge-large" id="toolCategory"></div>
+                    </section>
+
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">link</span>
+                            Website
+                        </h2>
+                        <a href="#" id="toolWebsite" class="website-link" target="_blank" rel="noopener noreferrer">
+                            <span class="material-symbols-outlined">open_in_new</span>
+                            Visit Website
+                        </a>
+                    </section>
+                </div>
+
+                <!-- Pricing Tab -->
+                <div class="tab-content" id="pricing-tab">
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">free_breakfast</span>
+                            Free Plan
+                        </h2>
+                        <div class="pricing-card free-plan" id="freePlan">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">workspace_premium</span>
+                            Paid Plan
+                        </h2>
+                        <div class="pricing-card paid-plan" id="paidPlan">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">payments</span>
+                            Pricing Details
+                        </h2>
+                        <div class="pricing-details-grid" id="pricingInfo">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">help</span>
+                            Should You Pay?
+                        </h2>
+                        <div class="should-pay-card" id="shouldPay">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Features Tab -->
+                <div class="tab-content" id="features-tab">
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            Best For
+                        </h2>
+                        <div class="features-grid" id="bestFor">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">cancel</span>
+                            Not Good For
+                        </h2>
+                        <div class="features-grid not-good" id="notGoodFor">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">speed</span>
+                            Limits & Restrictions
+                        </h2>
+                        <div class="limits-card" id="toolLimits">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Recommendations Tab -->
+                <div class="tab-content" id="recommendations-tab">
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">people</span>
+                            User Types
+                        </h2>
+                        <div class="recommendations-grid" id="userTypes">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">business</span>
+                            Industries
+                        </h2>
+                        <div class="recommendations-grid" id="industries">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">task_alt</span>
+                            Use Cases
+                        </h2>
+                        <div class="recommendations-grid" id="useCases">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">trending_up</span>
+                            AI Level
+                        </h2>
+                        <div class="ai-level-card" id="aiLevel">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </section>
+
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">account_balance_wallet</span>
+                            Budget Recommendation
+                        </h2>
+                        <div class="budget-card" id="budgetRec">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Verdict Tab -->
+                <div class="tab-content" id="verdict-tab">
+                    <section class="detail-section">
+                        <h2 class="section-heading">
+                            <span class="material-symbols-outlined">gavel</span>
+                            Honest Verdict
+                        </h2>
+                        <div class="verdict-card" id="verdict">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="detail-actions">
+                <button class="btn btn-favorite" id="favoriteBtn" onclick="toggleToolFavorite()">
+                    <span class="material-symbols-outlined" id="favoriteIcon">favorite_border</span>
+                    <span id="favoriteText">Save to Favorites</span>
+                </button>
+                <a href="comparison.html" class="btn btn-primary">
+                    <span class="material-symbols-outlined">compare_arrows</span>
+                    Compare with Others
+                </a>
+                <a href="recommend.html" class="btn btn-secondary">
+                    <span class="material-symbols-outlined">lightbulb</span>
+                    Get Recommendations
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 gubicoo Lens. Honest comparisons, no fluff.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="settings.js"></script>
+    <script>
+        let currentToolId = null;
+        let currentTool = null;
+
+        // Tab switching functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabName = btn.dataset.tab;
+                
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                btn.classList.add('active');
+                document.getElementById(`${tabName}-tab`).classList.add('active');
+                
+                // Mobile-only: Auto-scroll tab container to reveal clicked tab and hidden tabs
+                if (window.innerWidth <= 768) {
+                    const tabsContainer = document.querySelector('.tool-detail-tabs');
+                    if (tabsContainer) {
+                        // Calculate scroll position: tab position - small left offset to reveal right tabs
+                        const containerRect = tabsContainer.getBoundingClientRect();
+                        const btnRect = btn.getBoundingClientRect();
+                        const scrollLeft = tabsContainer.scrollLeft;
+                        
+                        // Calculate the position of the button relative to the container
+                        const btnLeft = btnRect.left - containerRect.left + scrollLeft;
+                        
+                        // Scroll to show the button slightly left of center, revealing tabs to the right
+                        // Offset of 80px ensures some tabs on the right become visible
+                        const targetScroll = btnLeft - 80;
+                        
+                        tabsContainer.scrollTo({
+                            left: Math.max(0, targetScroll),
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Load tool details on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            currentToolId = urlParams.get('id');
+            if (currentToolId) {
+                loadToolDetails(currentToolId);
+            }
+        });
+
+        // Favorite button functionality - Use centralized functions from script.js
+        function toggleToolFavorite() {
+            const toolId = new URLSearchParams(window.location.search).get('id');
+            if (!toolId) {
+                console.error('[FAVORITE] No tool ID found');
+                return;
+            }
+            
+            console.log('[FAVORITE] Toggling favorite for:', toolId);
+            
+            // Wait for script.js to load, then use centralized function
+            if (typeof toggleToolSaved === 'function') {
+                const isNowSaved = toggleToolSaved(toolId);
+                updateFavoriteButtonUI(isNowSaved);
+                console.log('[FAVORITE] Tool is now:', isNowSaved ? 'saved' : 'unsaved');
+            } else {
+                // Fallback: Use the same localStorage key as script.js
+                const savedTools = JSON.parse(localStorage.getItem('gubicooLensSavedTools') || '[]');
+                const isSaved = savedTools.includes(toolId);
+                let isNowSaved;
+                
+                if (isSaved) {
+                    const index = savedTools.indexOf(toolId);
+                    if (index > -1) {
+                        savedTools.splice(index, 1);
+                    }
+                    isNowSaved = false;
+                    console.log('[FAVORITE] Removed from saved');
+                } else {
+                    savedTools.push(toolId);
+                    isNowSaved = true;
+                    console.log('[FAVORITE] Added to saved');
+                }
+                
+                localStorage.setItem('gubicooLensSavedTools', JSON.stringify(savedTools));
+                updateFavoriteButtonUI(isNowSaved);
+                console.log('[FAVORITE] Updated localStorage:', savedTools);
+            }
+        }
+
+        // Helper function to update UI
+        function updateFavoriteButtonUI(isSaved) {
+            const favoriteIcon = document.getElementById('favoriteIcon');
+            const favoriteText = document.getElementById('favoriteText');
+            
+            if (favoriteIcon) {
+                favoriteIcon.textContent = isSaved ? 'favorite' : 'favorite_border';
+                favoriteIcon.style.color = isSaved ? '#ef4444' : '';
+            }
+            if (favoriteText) {
+                favoriteText.textContent = isSaved ? 'Saved to Favorites' : 'Save to Favorites';
+            }
+        }
+
+        // Make function globally accessible
+        window.toggleToolFavorite = toggleToolFavorite;
+    </script>
+</body>
+</html>

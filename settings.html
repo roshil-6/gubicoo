@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - gubicoo Lens</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Top App Bar -->
+        <header class="app-header">
+            <div class="header-content">
+                <a href="index.html" class="back-link-header">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </a>
+                <div class="user-text">
+                    <h2 class="header-title">Settings</h2>
+                </div>
+                <div style="width: 40px;"></div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Appearance Section -->
+            <div class="settings-section">
+                <div class="settings-section-header">
+                    <div class="settings-section-icon">
+                        <span class="material-symbols-outlined">palette</span>
+                    </div>
+                    <div class="settings-section-info">
+                        <h2 class="settings-section-title">Appearance</h2>
+                        <p class="settings-section-subtitle">Customize your visual experience</p>
+                    </div>
+                </div>
+                
+                <div class="settings-option-group">
+                    <label class="settings-option-label-full">
+                        <div class="settings-option-main">
+                            <div class="settings-option-icon-wrapper">
+                                <span class="material-symbols-outlined">brightness_6</span>
+                            </div>
+                            <div class="settings-option-text">
+                                <h3 class="settings-option-title">Theme</h3>
+                                <p class="settings-option-description">Choose your preferred color scheme</p>
+                            </div>
+                        </div>
+                        <div class="settings-select-wrapper">
+                            <select id="themeSelect" class="settings-select-modern">
+                                <option value="light">Light mode</option>
+                                <option value="dark">🌙 Dark mode</option>
+                            </select>
+                            <span class="material-symbols-outlined settings-select-arrow">expand_more</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Language & Region Section -->
+            <div class="settings-section">
+                <div class="settings-section-header">
+                    <div class="settings-section-icon">
+                        <span class="material-symbols-outlined">language</span>
+                    </div>
+                    <div class="settings-section-info">
+                        <h2 class="settings-section-title">Language & Region</h2>
+                        <p class="settings-section-subtitle">Set your language and regional preferences</p>
+                    </div>
+                </div>
+                
+                <div class="settings-option-group">
+                    <label class="settings-option-label-full">
+                        <div class="settings-option-main">
+                            <div class="settings-option-icon-wrapper">
+                                <span class="material-symbols-outlined">translate</span>
+                            </div>
+                            <div class="settings-option-text">
+                                <h3 class="settings-option-title">Language</h3>
+                                <p class="settings-option-description">Select your preferred language</p>
+                            </div>
+                        </div>
+                        <div class="settings-select-wrapper">
+                            <select id="languageSelect" class="settings-select-modern">
+                                <option value="en">English (default)</option>
+                            </select>
+                            <span class="material-symbols-outlined settings-select-arrow">expand_more</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="settings-option-group">
+                    <label class="settings-option-label-full">
+                        <div class="settings-option-main">
+                            <div class="settings-option-icon-wrapper">
+                                <span class="material-symbols-outlined">public</span>
+                            </div>
+                            <div class="settings-option-text">
+                                <h3 class="settings-option-title">Region</h3>
+                                <p class="settings-option-description">Some tools & pricing differ by region</p>
+                            </div>
+                        </div>
+                        <div class="settings-select-wrapper">
+                            <select id="regionSelect" class="settings-select-modern">
+                                <option value="India">🇮🇳 India</option>
+                                <option value="US">🇺🇸 United States</option>
+                                <option value="Europe">🇪🇺 Europe</option>
+                                <option value="Global">🌍 Global</option>
+                            </select>
+                            <span class="material-symbols-outlined settings-select-arrow">expand_more</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Currency Section - Removed, USD only -->
+
+            <!-- Save Button -->
+            <div class="settings-actions">
+                <button class="settings-save-btn" id="saveSettingsBtn">
+                    <span class="material-symbols-outlined">save</span>
+                    <span>Save Preferences</span>
+                </button>
+            </div>
+
+            <div class="bottom-spacer"></div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <span class="material-symbols-outlined">home</span>
+                <span class="nav-label">Home</span>
+            </a>
+            <a href="browse.html" class="nav-item">
+                <span class="material-symbols-outlined">category</span>
+                <span class="nav-label">Browse</span>
+            </a>
+            <button class="nav-item nav-search" data-page="search">
+                <span class="material-symbols-outlined">search</span>
+            </button>
+            <button class="nav-item" data-page="saved">
+                <span class="material-symbols-outlined">bookmarks</span>
+                <span class="nav-label">Saved</span>
+            </button>
+            <button class="nav-item active" data-page="settings">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="nav-label">Settings</span>
+            </button>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="settings.js"></script>
+</body>
+</html>

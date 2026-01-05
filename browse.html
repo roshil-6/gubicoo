@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Browse AI Tools by Category - Gubicoo</title>
+    <meta name="description" content="Browse AI tools by category. Find the perfect AI tool for coding, writing, design, video, and more." />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon/favicon.png" type="image/png" />
+    <link rel="icon" href="favicon/cub-cog-logo.png" type="image/png" />
+    <link rel="icon" href="favicon/fevicon.ic.png" type="image/png" />
+    <link rel="icon" href="favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="favicon/favicon-16x16.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" sizes="180x180" />
+    <link rel="icon" href="icon/gubicoo-logo.png.png" type="image/png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Top App Bar -->
+        <header class="app-header">
+            <div class="header-content">
+                <a href="index.html" class="back-link-header">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                </a>
+                <div class="user-text">
+                    <h2 class="header-title">Browse</h2>
+                </div>
+                <div style="width: 40px;"></div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- WHO ARE YOU SECTION -->
+            <div class="who-are-you-section" id="whoAreYouSection">
+                <h1 class="who-are-you-title">Who are you?</h1>
+                <div class="who-are-you-cards" id="whoAreYouCards">
+                    <!-- Cards will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- WHAT DO YOU WANT HELP WITH SECTION (hidden by default) -->
+            <div class="help-with-section" id="helpWithSection" style="display: none;">
+                <h2 class="help-with-title">What do you want help with?</h2>
+                <div class="help-with-cards" id="helpWithCards">
+                    <!-- Cards will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- RECOMMENDATIONS SECTION (hidden by default) -->
+            <div class="browse-recommendations" id="browseRecommendations" style="display: none;">
+                <div class="browse-recommendations-header">
+                    <button class="start-over-btn" id="startOverBtn">
+                        <span class="material-symbols-outlined">refresh</span>
+                        <span>Start Over</span>
+                    </button>
+                    <h2 class="recommendations-title" id="recommendationsTitle">Recommended for you</h2>
+                </div>
+                <div class="browse-recommendations-list" id="browseRecommendationsList">
+                    <!-- Recommendations will be loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- NORMAL BROWSING SECTION (always visible) -->
+            <div class="normal-browsing-section" id="normalBrowsingSection">
+                <div class="browsing-divider">
+                    <span class="divider-text">Or browse by category</span>
+                </div>
+                <div class="browse-sections" id="browseSections">
+                    <!-- Question categories will be loaded dynamically -->
+                </div>
+            </div>
+
+            <div class="bottom-spacer"></div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <span class="material-symbols-outlined">home</span>
+                <span class="nav-label">Home</span>
+            </a>
+            <button class="nav-item active" data-page="browse">
+                <span class="material-symbols-outlined">category</span>
+                <span class="nav-label">Browse</span>
+            </button>
+            <button class="nav-item nav-search" data-page="search">
+                <span class="material-symbols-outlined">search</span>
+            </button>
+            <button class="nav-item" data-page="saved" onclick="window.location.href='index.html#saved'">
+                <span class="material-symbols-outlined">bookmarks</span>
+                <span class="nav-label">Saved</span>
+            </button>
+            <button class="nav-item" id="settingsBtn" onclick="openSettingsModal()">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="nav-label">Settings</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Settings Modal Popup -->
+    <div class="settings-modal-overlay" id="settingsModal" onclick="closeSettingsModalOnOverlay(event)">
+        <div class="settings-modal-content" onclick="event.stopPropagation()">
+            <div class="settings-modal-header">
+                <h2 class="settings-modal-title">Settings</h2>
+                <button class="settings-modal-close" onclick="closeSettingsModal()" aria-label="Close settings">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="settings-modal-body">
+                <div class="settings-option-group">
+                    <label class="settings-option-label-full">
+                        <div class="settings-option-main">
+                            <div class="settings-option-icon-wrapper">
+                                <span class="material-symbols-outlined">brightness_6</span>
+                            </div>
+                            <div class="settings-option-text">
+                                <h3 class="settings-option-title">Theme</h3>
+                                <p class="settings-option-description">Choose your preferred color scheme</p>
+                            </div>
+                        </div>
+                        <div class="settings-select-wrapper">
+                            <select id="themeSelectModal" class="settings-select-modern">
+                                <option value="light">Light mode</option>
+                                <option value="dark">🌙 Dark mode</option>
+                            </select>
+                            <span class="material-symbols-outlined settings-select-arrow">expand_more</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="settings.js"></script>
+    <script src="browse.js"></script>
+</body>
+</html>
