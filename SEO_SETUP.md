@@ -74,3 +74,7 @@
 - All pages now have proper SEO meta tags
 - Favicon will work once `favicon.ico` is created and placed in root folder
 
+
+
+
+

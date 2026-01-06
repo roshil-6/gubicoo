@@ -110,3 +110,7 @@ If it doesn't show:
 - Your current PNG fallback will work, but ICO is better for SEO
 - Once added, Google will index it (may take 3-14 days)
 
+
+
+
+

@@ -52,3 +52,7 @@ The browser will try these in order:
 
 Your favicon is now active! 🎉
 
+
+
+
+

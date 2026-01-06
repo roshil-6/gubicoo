@@ -26,3 +26,7 @@
 ## After Saving:
 The HTML is already configured to use files in this folder. Once you save the image here, it will work automatically!
 
+
+
+
+

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     
     <!-- Primary SEO Meta Tags -->
     <title>Compare AI Tools Side-by-Side - Gubicoo</title>
@@ -13,11 +13,6 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="favicon/favicon.ico" type="image/x-icon" />
     <link rel="icon" href="favicon/favicon.png" type="image/png" />
-    <link rel="icon" href="favicon/cub-cog-logo.png" type="image/png" />
-    <link rel="icon" href="favicon/fevicon.ic.png" type="image/png" />
-    <link rel="icon" href="favicon/favicon-32x32.png" type="image/png" sizes="32x32" />
-    <link rel="icon" href="favicon/favicon-16x16.png" type="image/png" sizes="16x16" />
-    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png" sizes="180x180" />
     <link rel="icon" href="icon/gubicoo-logo.png.png" type="image/png" />
     
     <!-- Fonts -->
@@ -42,7 +37,8 @@
             <section id="compare-tools" class="compare-section">
                 <h2 class="section-title">Compare AI Tools</h2>
 
-                <div class="compare-controls">
+                <!-- Desktop: Multi-tool comparison -->
+                <div class="compare-controls desktop-only">
                     <div class="compare-selectors" id="toolSelectors">
                         <!-- Tool selectors will be added dynamically -->
                     </div>
@@ -54,7 +50,8 @@
                     </div>
                 </div>
 
-                <div class="compare-table-wrapper">
+                <!-- Desktop: Comparison table -->
+                <div class="compare-table-wrapper desktop-only">
                     <table class="compare-table" id="compareTable">
                         <thead id="compareTableHead">
                             <tr>
@@ -74,6 +71,28 @@
                         </tbody>
                     </table>
                 </div>
+
+                <!-- Mobile: Simple two-tool comparison -->
+                <div class="mobile-compare-wrapper mobile-only">
+                    <div class="mobile-compare-selectors">
+                        <div class="mobile-selector-group">
+                            <label for="mobileToolA">Select Tool A</label>
+                            <select id="mobileToolA" class="mobile-tool-select">
+                                <option value="">Choose a tool...</option>
+                            </select>
+                        </div>
+                        <div class="mobile-selector-group">
+                            <label for="mobileToolB">Select Tool B</label>
+                            <select id="mobileToolB" class="mobile-tool-select">
+                                <option value="">Choose a tool...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="mobileComparisonResult" class="mobile-comparison-result">
+                        <!-- Mobile comparison will be rendered here -->
+                    </div>
+                </div>
             </section>
         </div>
     </main>
@@ -87,10 +106,196 @@
     <script src="script.js"></script>
     <script src="settings.js"></script>
     <script>
-        // Load comparison page
+        // Initialize comparison page
         document.addEventListener('DOMContentLoaded', function() {
-            loadMultiToolComparison();
+            initComparisonPage();
         });
+
+        function initComparisonPage() {
+            // Check if mobile
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                initMobileComparison();
+            } else {
+                initDesktopComparison();
+            }
+
+            // Handle resize
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(function() {
+                    location.reload(); // Simple reload on resize
+                }, 500);
+            });
+        }
+
+        function loadData() {
+            return fetch('tools-data.json')
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('Failed to load data');
+                    }
+                    return response.json();
+                })
+                .catch(function(error) {
+                    console.error('[COMPARISON] Error loading data:', error);
+                    return null;
+                });
+        }
+
+        function initMobileComparison() {
+            console.log('[MOBILE COMPARISON] Initializing mobile comparison');
+            
+            // Load tools data
+            loadData().then(function(data) {
+                if (!data || !data.tools) {
+                    console.error('[MOBILE COMPARISON] No data available');
+                    return;
+                }
+
+                // Populate dropdowns
+                const toolA = document.getElementById('mobileToolA');
+                const toolB = document.getElementById('mobileToolB');
+                
+                data.tools.forEach(function(tool) {
+                    if (tool && tool.id && tool.name) {
+                        const optionA = document.createElement('option');
+                        optionA.value = tool.id;
+                        optionA.textContent = tool.name;
+                        toolA.appendChild(optionA);
+                        
+                        const optionB = document.createElement('option');
+                        optionB.value = tool.id;
+                        optionB.textContent = tool.name;
+                        toolB.appendChild(optionB);
+                    }
+                });
+
+                // Handle selection changes
+                toolA.addEventListener('change', function() {
+                    renderMobileComparison(data);
+                });
+                toolB.addEventListener('change', function() {
+                    renderMobileComparison(data);
+                });
+            }).catch(function(error) {
+                console.error('[MOBILE COMPARISON] Error loading data:', error);
+            });
+        }
+
+        function initDesktopComparison() {
+            console.log('[DESKTOP COMPARISON] Initializing desktop comparison');
+            // Desktop comparison logic (existing code)
+            if (typeof loadMultiToolComparison === 'function') {
+                loadMultiToolComparison();
+            }
+        }
+
+        function renderMobileComparison(data) {
+            const toolAId = document.getElementById('mobileToolA').value;
+            const toolBId = document.getElementById('mobileToolB').value;
+            const resultDiv = document.getElementById('mobileComparisonResult');
+
+            if (!toolAId || !toolBId) {
+                resultDiv.innerHTML = '<p class="mobile-placeholder">Select both tools to compare</p>';
+                return;
+            }
+
+            const toolA = data.tools.find(t => t && t.id === toolAId);
+            const toolB = data.tools.find(t => t && t.id === toolBId);
+
+            if (!toolA || !toolB) {
+                resultDiv.innerHTML = '<p class="mobile-placeholder">Tools not found</p>';
+                return;
+            }
+
+            // Render comparison
+            resultDiv.innerHTML = `
+                <div class="mobile-tool-section">
+                    <h3 class="mobile-tool-name">${escapeHtml(toolA.name)}</h3>
+                    <div class="mobile-tool-info">
+                        <div class="mobile-info-item">
+                            <span class="mobile-info-label">Category:</span>
+                            <span class="mobile-info-value">${escapeHtml(toolA.categoryName || getCategoryName(data, toolA.category) || 'N/A')}</span>
+                        </div>
+                        <div class="mobile-info-item">
+                            <span class="mobile-info-label">Description:</span>
+                            <span class="mobile-info-value">${escapeHtml(toolA.purpose || toolA.description || 'N/A')}</span>
+                        </div>
+                        <div class="mobile-info-item">
+                            <span class="mobile-info-label">Pricing:</span>
+                            <span class="mobile-info-value">${escapeHtml(getPricingType(toolA))}</span>
+                        </div>
+                        <div class="mobile-info-item">
+                            <span class="mobile-info-label">Key Features:</span>
+                            <span class="mobile-info-value">${getKeyFeatures(toolA)}</span>
+                        </div>
+                        <div class="mobile-info-item">
+                            <span class="mobile-info-label">Should I Pay?</span>
+                            <span class="mobile-info-value verdict">${escapeHtml(toolA.shouldIPay || 'N/A')}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mobile-tool-section">
+                    <h3 class="mobile-tool-name">${escapeHtml(toolB.name)}</h3>
+                    <div class="mobile-tool-info">
+                        <div class="mobile-info-item">
+                            <span class="mobile-info-label">Category:</span>
+                            <span class="mobile-info-value">${escapeHtml(toolB.categoryName || getCategoryName(data, toolB.category) || 'N/A')}</span>
+                        </div>
+                        <div class="mobile-info-item">
+                            <span class="mobile-info-label">Description:</span>
+                            <span class="mobile-info-value">${escapeHtml(toolB.purpose || toolB.description || 'N/A')}</span>
+                        </div>
+                        <div class="mobile-info-item">
+                            <span class="mobile-info-label">Pricing:</span>
+                            <span class="mobile-info-value">${escapeHtml(getPricingType(toolB))}</span>
+                        </div>
+                        <div class="mobile-info-item">
+                            <span class="mobile-info-label">Key Features:</span>
+                            <span class="mobile-info-value">${getKeyFeatures(toolB)}</span>
+                        </div>
+                        <div class="mobile-info-item">
+                            <span class="mobile-info-label">Should I Pay?</span>
+                            <span class="mobile-info-value verdict">${escapeHtml(toolB.shouldIPay || 'N/A')}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getCategoryName(data, categoryId) {
+            if (!data || !data.categories) return null;
+            const category = data.categories.find(cat => cat && cat.id === categoryId);
+            return category ? category.name : null;
+        }
+
+        function getPricingType(tool) {
+            if (tool.pricingType) return tool.pricingType;
+            if (tool.pricing) {
+                if (tool.pricing.free && tool.pricing.free.available) {
+                    return tool.pricing.paid ? 'Freemium' : 'Free';
+                }
+                return 'Paid';
+            }
+            return 'N/A';
+        }
+
+        function getKeyFeatures(tool) {
+            if (tool.bestFor && Array.isArray(tool.bestFor) && tool.bestFor.length > 0) {
+                return tool.bestFor.slice(0, 5).map(item => escapeHtml(item)).join(', ');
+            }
+            return 'N/A';
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
     </script>
 </body>
 </html>
