@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
@@ -47,6 +47,7 @@
             <a href="index.html" class="back-link">← Back</a>
             <h1 class="site-title">Compare AI Tools</h1>
         </div>
+  
     </header>
 
     <main class="main-content">
@@ -123,243 +124,47 @@
     <script src="script.js"></script>
     <script src="settings.js"></script>
     <script>
-        // BULLETPROOF mobile detection and visibility for REAL devices
-        (function() {
-            function isMobileDevice() {
-                // Multiple detection methods - be VERY aggressive for real devices
-                const width = window.innerWidth || document.documentElement.clientWidth || screen.width || 0;
-                const mediaQuery = window.matchMedia('(max-width: 768px)');
-                const userAgent = navigator.userAgent || '';
-                const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
-                const touchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-                
-                // VERY aggressive: If width <= 768 OR media query matches OR (mobile UA and width < 1024) OR (touch and width <= 1024)
-                return width <= 768 || mediaQuery.matches || (isMobileUA && width < 1024) || (touchDevice && width <= 1024);
-            }
-            
-            function showMobileInterface() {
-                const mobileWrapper = document.getElementById('mobileCompareWrapper');
-                const desktopElements = document.querySelectorAll('.desktop-only');
-                const isMobile = isMobileDevice();
-                
-                // ALWAYS ensure mobile wrapper exists before checking
-                if (!mobileWrapper) {
-                    setTimeout(showMobileInterface, 100);
-                    return;
-                }
-                
-                if (isMobile) {
-                    // FORCE show mobile with aggressive inline styles - NEVER hide on mobile
-                    mobileWrapper.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; width: 100% !important; max-width: 100% !important; position: relative !important; z-index: 1000 !important; padding: 1rem !important; box-sizing: border-box !important; margin: 0 !important;';
-                    
-                    // Also force visibility on child elements
-                    const selectors = mobileWrapper.querySelector('.mobile-compare-selectors');
-                    const result = mobileWrapper.querySelector('.mobile-comparison-result');
-                    if (selectors) selectors.style.cssText = 'display: flex !important; visibility: visible !important;';
-                    if (result) result.style.cssText = 'display: flex !important; visibility: visible !important;';
-                    
-                    // FORCE hide desktop
-                    desktopElements.forEach(function(el) {
-                        el.style.cssText = 'display: none !important; visibility: hidden !important; opacity: 0 !important; height: 0 !important; overflow: hidden !important;';
-                    });
-                } else {
-                    // Only hide mobile on desktop (width > 768px)
-                    mobileWrapper.style.cssText = 'display: none !important; visibility: hidden !important;';
-                    // Show desktop
-                    desktopElements.forEach(function(el) {
-                        el.style.cssText = '';
-                    });
-                }
-            }
-            
-            // Run immediately (before DOM ready) - CRITICAL for real devices
-            setTimeout(showMobileInterface, 0);
-            
-            // Run when DOM is ready
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', showMobileInterface);
-            } else {
-                showMobileInterface();
-            }
-            
-            // Run after window fully loads (critical for real devices with slow connections)
-            window.addEventListener('load', function() {
-                setTimeout(showMobileInterface, 0);
-                setTimeout(showMobileInterface, 50);
-                setTimeout(showMobileInterface, 200);
-                setTimeout(showMobileInterface, 500);
-                setTimeout(showMobileInterface, 1000);
-            });
-            
-            // Run on resize and orientation change
-            window.addEventListener('resize', function() {
-                setTimeout(showMobileInterface, 0);
-                setTimeout(showMobileInterface, 100);
-            });
-            
-            window.addEventListener('orientationchange', function() {
-                setTimeout(showMobileInterface, 0);
-                setTimeout(showMobileInterface, 300);
-                setTimeout(showMobileInterface, 600);
-            });
-        })();
-
-        // Initialize comparison page - MULTIPLE attempts for real devices
-        function runInit() {
-            initComparisonPage();
-        }
-        
-        // Try immediately if DOM is ready
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
-            runInit();
-        }
-        
-        // Try on DOMContentLoaded
-        document.addEventListener('DOMContentLoaded', runInit);
-        
-        // Try on window load (critical for real devices with slow connections)
-        window.addEventListener('load', function() {
-            setTimeout(runInit, 50);
-            setTimeout(runInit, 200);
-            setTimeout(runInit, 500);
-            setTimeout(runInit, 1000);
-        });
-        
-        // Last resort - try after 2 seconds and 5 seconds (for very slow devices)
-        setTimeout(runInit, 2000);
-        setTimeout(runInit, 5000);
-        
-        // Also ensure mobile is visible on every frame for first 3 seconds (for real devices)
-        let frameCount = 0;
-        const maxFrames = 60; // ~3 seconds at 20fps
-        function forceMobileVisible() {
-            if (frameCount++ < maxFrames) {
-                const mobileWrapper = document.getElementById('mobileCompareWrapper');
-                if (mobileWrapper) {
-                    const width = window.innerWidth || document.documentElement.clientWidth || screen.width || 0;
-                    if (width <= 768 || window.matchMedia('(max-width: 768px)').matches) {
-                        mobileWrapper.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; width: 100% !important;';
-                    }
-                }
-                requestAnimationFrame(forceMobileVisible);
-            }
-        }
-        requestAnimationFrame(forceMobileVisible);
-
-        function initComparisonPage() {
-            // Use same detection as visibility function
-            function isMobile() {
-                const width = window.innerWidth || document.documentElement.clientWidth || screen.width;
-                const mediaQuery = window.matchMedia('(max-width: 768px)');
-                const userAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-                return mediaQuery.matches || width <= 768 || (userAgent && width < 1024);
-            }
-            
-            const isMobileDevice = isMobile();
-            
-            // Always try mobile initialization (it will work or fail gracefully)
+        // Simple initialization - CSS handles visibility
+        document.addEventListener('DOMContentLoaded', () => {
             initMobileComparison();
-            
-            // Initialize desktop only if not mobile
-            if (!isMobileDevice) {
-                initDesktopComparison();
-            }
-        }
-
-        function loadData() {
-            return fetch('tools-data.json')
-                .then(function(response) {
-                    if (!response.ok) {
-                        throw new Error('Failed to load data');
-                    }
-                    return response.json();
-                })
-                .catch(function(error) {
-                    console.error('[COMPARISON] Error loading data:', error);
-                    return null;
-                });
-        }
+            initDesktopComparison();
+        });
 
         function initMobileComparison() {
             const toolA = document.getElementById('mobileToolA');
             const toolB = document.getElementById('mobileToolB');
             const resultDiv = document.getElementById('mobileComparisonResult');
-            const mobileWrapper = document.getElementById('mobileCompareWrapper');
-            
-            if (!toolA || !toolB || !resultDiv) {
-                // Retry multiple times for real devices (more attempts)
-                setTimeout(initMobileComparison, 50);
-                setTimeout(initMobileComparison, 200);
-                setTimeout(initMobileComparison, 500);
-                setTimeout(initMobileComparison, 1000);
-                setTimeout(initMobileComparison, 2000);
-                return;
-            }
-            
-            // FORCE visibility on mobile (aggressive) - ALWAYS check and force
-            if (mobileWrapper) {
-                const width = window.innerWidth || document.documentElement.clientWidth || screen.width || 0;
-                const mediaQuery = window.matchMedia('(max-width: 768px)');
-                const isMobile = width <= 768 || mediaQuery.matches;
-                
-                if (isMobile) {
-                    // Force visibility with ALL possible properties
-                    mobileWrapper.style.cssText = 'display: block !important; visibility: visible !important; opacity: 1 !important; width: 100% !important; max-width: 100% !important; padding: 1rem !important; box-sizing: border-box !important; position: relative !important; z-index: 1000 !important; margin: 0 !important;';
-                    
-                    // Also ensure child elements are visible
-                    const children = mobileWrapper.querySelectorAll('*');
-                    children.forEach(function(child) {
-                        if (child.style) {
-                            child.style.visibility = 'visible';
-                            child.style.opacity = '1';
-                        }
-                    });
-                }
-            }
-            
-            // Load tools data with retry
-            loadData()
-                .then(function(data) {
-                    if (!data || !data.tools || data.tools.length === 0) {
-                        resultDiv.innerHTML = '<p class="mobile-placeholder">No tools available. Please refresh the page.</p>';
+
+            if (!toolA || !toolB || !resultDiv) return;
+
+            fetch('/tools-data.json')
+                .then(res => res.json())
+                .then(data => {
+                    if (!data || !data.tools) {
+                        resultDiv.innerHTML = '<p>No tools found</p>';
                         return;
                     }
 
-                    // Clear and populate dropdowns
-                    toolA.innerHTML = '<option value="">Choose a tool...</option>';
-                    toolB.innerHTML = '<option value="">Choose a tool...</option>';
-                    
-                    data.tools.forEach(function(tool) {
-                        if (tool && tool.id && tool.name) {
-                            const optionA = document.createElement('option');
-                            optionA.value = tool.id;
-                            optionA.textContent = tool.name;
-                            toolA.appendChild(optionA);
-                            
-                            const optionB = document.createElement('option');
-                            optionB.value = tool.id;
-                            optionB.textContent = tool.name;
-                            toolB.appendChild(optionB);
-                        }
-                    });
-
-                    // Store data globally for comparison
                     window.mobileComparisonData = data;
 
-                    // Handle selection changes
-                    function updateComparison() {
-                        renderMobileComparison(data);
-                    }
-                    
-                    toolA.removeEventListener('change', updateComparison);
-                    toolB.removeEventListener('change', updateComparison);
-                    toolA.addEventListener('change', updateComparison);
-                    toolB.addEventListener('change', updateComparison);
+                    toolA.innerHTML = '<option value="">Choose a tool...</option>';
+                    toolB.innerHTML = '<option value="">Choose a tool...</option>';
+
+                    data.tools.forEach(tool => {
+                        toolA.add(new Option(tool.name, tool.id));
+                        toolB.add(new Option(tool.name, tool.id));
+                    });
+
+                    const update = () => renderMobileComparison(data);
+
+                    // Safari-safe event binding
+                    ['change', 'input'].forEach(evt => {
+                        toolA.addEventListener(evt, update);
+                        toolB.addEventListener(evt, update);
+                    });
                 })
-                .catch(function(error) {
-                    resultDiv.innerHTML = '<p class="mobile-placeholder">Failed to load tools. Please check your connection and refresh.</p>';
-                    // Retry after 2 seconds
-                    setTimeout(initMobileComparison, 2000);
+                .catch(() => {
+                    resultDiv.innerHTML = '<p>Failed to load tools</p>';
                 });
         }
 
