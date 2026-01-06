@@ -5,7 +5,7 @@
 ### 1. Title & Meta Description
 - **Title**: "Gubicoo – Compare AI Tools & Find the Right One" (52 characters)
 - **Description**: "Gubicoo helps you compare AI tools, understand free vs paid plans, and get honest recommendations based on your needs. No hype. Just clarity." (158 characters)
-- Added to: `index.html`, `recommend.html`, `tool-detail.html`, `comparison.html`, `browse.html`, `category.html`
+- Added to: `index.html`, `recommend.html`, `tool-detail.html`, `browse.html`, `category.html`
 
 ### 2. Open Graph Meta Tags
 - Added og:title, og:description, og:url, og:type, og:image
