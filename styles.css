@@ -1,40 +1,96 @@
 /* Mobile Comparison Styles - Simple Stacked Layout */
 
 /* Hide/Show based on screen size */
+/* MOBILE STYLES - Works even without JavaScript */
 @media (max-width: 768px) {
     .desktop-only {
         display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        height: 0 !important;
+        overflow: hidden !important;
     }
     .mobile-only {
         display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Force mobile wrapper visibility - MULTIPLE SELECTORS for reliability */
+    #mobileCompareWrapper,
+    .mobile-compare-wrapper.mobile-only,
+    div.mobile-compare-wrapper {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        position: relative !important;
+        z-index: 10 !important;
+    }
+    
+    /* Force all mobile elements visible */
+    .mobile-compare-selectors,
+    .mobile-selector-group,
+    .mobile-tool-select,
+    .mobile-comparison-result {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .mobile-compare-selectors {
+        display: flex !important;
     }
 }
 
 @media (min-width: 769px) {
     .mobile-only {
         display: none !important;
+        visibility: hidden !important;
     }
     .desktop-only {
         display: block !important;
+        visibility: visible !important;
+    }
+    
+    /* Explicitly hide mobile wrapper on desktop */
+    #mobileCompareWrapper,
+    .mobile-compare-wrapper.mobile-only,
+    div.mobile-compare-wrapper {
+        display: none !important;
+        visibility: hidden !important;
     }
 }
 
-/* Mobile Comparison Wrapper */
+/* Mobile Comparison Wrapper - ALWAYS visible, only hidden by desktop media query */
 .mobile-compare-wrapper {
-    width: 100%;
-    padding: 1rem;
-    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1rem !important;
+    box-sizing: border-box !important;
+    display: block !important; /* Always visible - desktop media query will override */
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 1 !important;
 }
 
 .mobile-compare-selectors {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     gap: 1rem;
     margin-bottom: 2rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .mobile-selector-group {
-    width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    display: block !important;
+    visibility: visible !important;
 }
 
 .mobile-selector-group label {
@@ -46,7 +102,8 @@
 }
 
 .mobile-tool-select {
-    width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
     padding: 0.875rem 1rem;
     border: 1.5px solid var(--border-color, #e5e7eb);
     border-radius: 0.75rem;
@@ -58,6 +115,8 @@
     -webkit-appearance: none;
     appearance: none;
     touch-action: manipulation;
+    display: block !important;
+    visibility: visible !important;
 }
 
 .mobile-tool-select:focus {
