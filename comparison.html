@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Compare AI Tools Side-by-Side - Gubicoo</title>
+    <meta name="description" content="Compare AI tools side-by-side. See pricing, features, and differences to make the best choice for your needs." />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon/favicon.png" type="image/png" />
+    <link rel="icon" href="icon/gubicoo-logo.png.png" type="image/png" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <a href="index.html" class="back-link">← Back</a>
+            <h1 class="site-title">Compare AI Tools</h1>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="compare-section">
+                <h2 class="section-title">Compare AI Tools</h2>
+
+                <div class="compare-selectors">
+                    <div class="compare-selector-group">
+                        <label for="toolA">Select Tool A</label>
+                        <select id="toolA" class="compare-select">
+                            <option value="">Choose a tool...</option>
+                        </select>
+                    </div>
+                    <div class="compare-selector-group">
+                        <label for="toolB">Select Tool B</label>
+                        <select id="toolB" class="compare-select">
+                            <option value="">Choose a tool...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="compareResult" class="compare-result">
+                    <p class="compare-placeholder">Select both tools to compare</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 gubicoo Lens. Honest comparisons, no fluff.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toolA = document.getElementById('toolA');
+            const toolB = document.getElementById('toolB');
+            const resultDiv = document.getElementById('compareResult');
+
+            if (!toolA || !toolB || !resultDiv) return;
+
+            let toolsData = null;
+
+            fetch('/tools-data.json')
+                .then(res => res.json())
+                .then(data => {
+                    if (!data || !data.tools) {
+                        resultDiv.innerHTML = '<p class="compare-placeholder">No tools found</p>';
+                        return;
+                    }
+
+                    toolsData = data;
+
+                    toolA.innerHTML = '<option value="">Choose a tool...</option>';
+                    toolB.innerHTML = '<option value="">Choose a tool...</option>';
+
+                    data.tools.forEach(tool => {
+                        if (tool && tool.id && tool.name) {
+                            toolA.add(new Option(tool.name, tool.id));
+                            toolB.add(new Option(tool.name, tool.id));
+                        }
+                    });
+
+                    const update = () => renderComparison(toolsData);
+
+                    ['change', 'input'].forEach(evt => {
+                        toolA.addEventListener(evt, update);
+                        toolB.addEventListener(evt, update);
+                    });
+                })
+                .catch(() => {
+                    resultDiv.innerHTML = '<p class="compare-placeholder">Failed to load tools</p>';
+                });
+
+            function renderComparison(data) {
+                const toolAId = toolA.value;
+                const toolBId = toolB.value;
+
+                if (!toolAId || !toolBId) {
+                    resultDiv.innerHTML = '<p class="compare-placeholder">Select both tools to compare</p>';
+                    return;
+                }
+
+                if (toolAId === toolBId) {
+                    resultDiv.innerHTML = '<p class="compare-placeholder">Please select two different tools</p>';
+                    return;
+                }
+
+                if (!data || !data.tools) {
+                    resultDiv.innerHTML = '<p class="compare-placeholder">Data not available</p>';
+                    return;
+                }
+
+                const toolAObj = data.tools.find(t => t && t.id === toolAId);
+                const toolBObj = data.tools.find(t => t && t.id === toolBId);
+
+                if (!toolAObj || !toolBObj) {
+                    resultDiv.innerHTML = '<p class="compare-placeholder">Tools not found</p>';
+                    return;
+                }
+
+                function getCategoryName(categoryId) {
+                    if (!data.categories) return 'N/A';
+                    const category = data.categories.find(cat => cat && cat.id === categoryId);
+                    return category ? category.name : 'N/A';
+                }
+
+                function getPricingType(tool) {
+                    if (tool.pricingType) return tool.pricingType;
+                    if (tool.pricing) {
+                        if (tool.pricing.free && tool.pricing.free.available) {
+                            return tool.pricing.paid ? 'Freemium' : 'Free';
+                        }
+                        return 'Paid';
+                    }
+                    return 'N/A';
+                }
+
+                function getKeyFeatures(tool) {
+                    if (tool.bestFor && Array.isArray(tool.bestFor) && tool.bestFor.length > 0) {
+                        return tool.bestFor.slice(0, 5).join(', ');
+                    }
+                    return 'N/A';
+                }
+
+                function escapeHtml(text) {
+                    if (!text) return '';
+                    const div = document.createElement('div');
+                    div.textContent = text;
+                    return div.innerHTML;
+                }
+
+                resultDiv.innerHTML = `
+                    <div class="compare-results">
+                        <div class="compare-tool-card">
+                            <h3 class="compare-tool-name">${escapeHtml(toolAObj.name)}</h3>
+                            <div class="compare-tool-details">
+                                <div class="compare-detail-item">
+                                    <span class="compare-detail-label">Category:</span>
+                                    <span class="compare-detail-value">${escapeHtml(getCategoryName(toolAObj.category))}</span>
+                                </div>
+                                <div class="compare-detail-item">
+                                    <span class="compare-detail-label">Description:</span>
+                                    <span class="compare-detail-value">${escapeHtml(toolAObj.purpose || toolAObj.description || 'N/A')}</span>
+                                </div>
+                                <div class="compare-detail-item">
+                                    <span class="compare-detail-label">Pricing:</span>
+                                    <span class="compare-detail-value">${escapeHtml(getPricingType(toolAObj))}</span>
+                                </div>
+                                <div class="compare-detail-item">
+                                    <span class="compare-detail-label">Key Features:</span>
+                                    <span class="compare-detail-value">${escapeHtml(getKeyFeatures(toolAObj))}</span>
+                                </div>
+                                <div class="compare-detail-item">
+                                    <span class="compare-detail-label">Should I Pay?</span>
+                                    <span class="compare-detail-value">${escapeHtml(toolAObj.shouldIPay || 'N/A')}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="compare-tool-card">
+                            <h3 class="compare-tool-name">${escapeHtml(toolBObj.name)}</h3>
+                            <div class="compare-tool-details">
+                                <div class="compare-detail-item">
+                                    <span class="compare-detail-label">Category:</span>
+                                    <span class="compare-detail-value">${escapeHtml(getCategoryName(toolBObj.category))}</span>
+                                </div>
+                                <div class="compare-detail-item">
+                                    <span class="compare-detail-label">Description:</span>
+                                    <span class="compare-detail-value">${escapeHtml(toolBObj.purpose || toolBObj.description || 'N/A')}</span>
+                                </div>
+                                <div class="compare-detail-item">
+                                    <span class="compare-detail-label">Pricing:</span>
+                                    <span class="compare-detail-value">${escapeHtml(getPricingType(toolBObj))}</span>
+                                </div>
+                                <div class="compare-detail-item">
+                                    <span class="compare-detail-label">Key Features:</span>
+                                    <span class="compare-detail-value">${escapeHtml(getKeyFeatures(toolBObj))}</span>
+                                </div>
+                                <div class="compare-detail-item">
+                                    <span class="compare-detail-label">Should I Pay?</span>
+                                    <span class="compare-detail-value">${escapeHtml(toolBObj.shouldIPay || 'N/A')}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
+
