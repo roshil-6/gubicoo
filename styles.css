@@ -243,4 +243,35 @@ html {
 .tools-grid > *:nth-child(6) { animation-delay: 0.3s; }
 .tools-grid > *:nth-child(n+7) { animation-delay: 0.35s; }
 
+/* Hide all comparison-related UI elements */
+.compare-section,
+.compare-selectors,
+.compare-select,
+.compare-result,
+.compare-placeholder,
+.compare-results,
+.compare-tool-card,
+.compare-tool-name,
+.compare-tool-details,
+.compare-detail-item,
+.compare-detail-label,
+.compare-detail-value,
+[class*="compare"],
+[id*="compare"],
+[id*="comparison"],
+[class*="comparison"],
+a[href*="comparison"],
+a[href*="compare"],
+button[onclick*="comparison"],
+button[onclick*="compare"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+}
+
 
