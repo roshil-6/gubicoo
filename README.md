@@ -5,11 +5,10 @@ A clean, fast, and fully responsive website for comparing AI tools (free vs paid
 ## Features
 
 - **Mobile-first responsive design** - Works perfectly on phones, tablets, and desktops
-- **Four main pages:**
+- **Three main pages:**
   - Home page with category browsing
   - Category page with tool listings
   - Tool detail page with comprehensive information
-  - Comparison page with side-by-side tool comparison
 - **No frameworks** - Pure HTML, CSS, and minimal JavaScript
 - **Professional design** - Clean, readable, and fast
 
@@ -19,7 +18,6 @@ A clean, fast, and fully responsive website for comparing AI tools (free vs paid
 ├── index.html          # Home page
 ├── category.html       # Category listing page
 ├── tool-detail.html    # Individual tool detail page
-├── comparison.html     # Tool comparison page
 ├── styles.css          # All styles (mobile-first)
 ├── script.js           # Dynamic content loading
 ├── tools-data.json     # Tools and categories data
@@ -31,7 +29,6 @@ A clean, fast, and fully responsive website for comparing AI tools (free vs paid
 1. Open `index.html` in a web browser
 2. Browse categories or search for specific tools
 3. Click on any tool to see detailed information
-4. Use the comparison page to compare multiple tools side-by-side
 
 ## Responsive Breakpoints
 
