@@ -465,7 +465,7 @@ function createBrowseResultCard(tool, data) {
     
     const iconContainerStyle = tool.domain 
         ? 'background: white; border: 1px solid var(--border-light); padding: 0.5rem;'
-        : 'background: var(--accent-color);';
+        : 'background: linear-gradient(135deg, #6366f1, #8b5cf6);';
     
     const isSaved = isToolSaved(tool.id);
     card.innerHTML = `

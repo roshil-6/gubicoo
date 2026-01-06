@@ -22,6 +22,7 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 </head>
 <body>
     <header class="site-header">
@@ -34,6 +35,14 @@
     <main class="main-content">
         <div class="container">
             <section class="tools-section">
+                <div class="view-controls">
+                    <button class="view-toggle-btn active" id="gridViewBtn" data-view="grid" title="Grid View">
+                        <span class="material-symbols-outlined">grid_view</span>
+                    </button>
+                    <button class="view-toggle-btn" id="listViewBtn" data-view="list" title="List View">
+                        <span class="material-symbols-outlined">view_list</span>
+                    </button>
+                </div>
                 <div class="tools-grid" id="toolsGrid">
                     <!-- Tools will be loaded dynamically -->
                 </div>
@@ -56,6 +65,36 @@
             const categoryId = urlParams.get('id');
             if (categoryId) {
                 loadCategoryTools(categoryId);
+            }
+            
+            // Grid/List view toggle
+            const gridViewBtn = document.getElementById('gridViewBtn');
+            const listViewBtn = document.getElementById('listViewBtn');
+            const toolsGrid = document.getElementById('toolsGrid');
+            
+            function setView(view) {
+                if (view === 'grid') {
+                    toolsGrid.classList.remove('list-view');
+                    toolsGrid.classList.add('grid-view');
+                    gridViewBtn.classList.add('active');
+                    listViewBtn.classList.remove('active');
+                    localStorage.setItem('categoryView', 'grid');
+                } else {
+                    toolsGrid.classList.remove('grid-view');
+                    toolsGrid.classList.add('list-view');
+                    listViewBtn.classList.add('active');
+                    gridViewBtn.classList.remove('active');
+                    localStorage.setItem('categoryView', 'list');
+                }
+            }
+            
+            if (gridViewBtn && listViewBtn && toolsGrid) {
+                gridViewBtn.addEventListener('click', () => setView('grid'));
+                listViewBtn.addEventListener('click', () => setView('list'));
+                
+                // Restore saved view preference
+                const savedView = localStorage.getItem('categoryView') || 'grid';
+                setView(savedView);
             }
         });
     </script>

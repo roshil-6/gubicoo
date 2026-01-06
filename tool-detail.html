@@ -244,10 +244,6 @@
 
             <!-- Action Buttons -->
             <div class="detail-actions">
-                <button class="btn btn-favorite" id="favoriteBtn" onclick="toggleToolFavorite()">
-                    <span class="material-symbols-outlined" id="favoriteIcon">favorite_border</span>
-                    <span id="favoriteText">Save to Favorites</span>
-                </button>
                 <a href="recommend.html" class="btn btn-secondary">
                     <span class="material-symbols-outlined">lightbulb</span>
                     Get Recommendations
@@ -315,62 +311,6 @@
             }
         });
 
-        // Favorite button functionality - Use centralized functions from script.js
-        function toggleToolFavorite() {
-            const toolId = new URLSearchParams(window.location.search).get('id');
-            if (!toolId) {
-                console.error('[FAVORITE] No tool ID found');
-                return;
-            }
-            
-            console.log('[FAVORITE] Toggling favorite for:', toolId);
-            
-            // Wait for script.js to load, then use centralized function
-            if (typeof toggleToolSaved === 'function') {
-                const isNowSaved = toggleToolSaved(toolId);
-                updateFavoriteButtonUI(isNowSaved);
-                console.log('[FAVORITE] Tool is now:', isNowSaved ? 'saved' : 'unsaved');
-            } else {
-                // Fallback: Use the same localStorage key as script.js
-                const savedTools = JSON.parse(localStorage.getItem('gubicooLensSavedTools') || '[]');
-                const isSaved = savedTools.includes(toolId);
-                let isNowSaved;
-                
-                if (isSaved) {
-                    const index = savedTools.indexOf(toolId);
-                    if (index > -1) {
-                        savedTools.splice(index, 1);
-                    }
-                    isNowSaved = false;
-                    console.log('[FAVORITE] Removed from saved');
-                } else {
-                    savedTools.push(toolId);
-                    isNowSaved = true;
-                    console.log('[FAVORITE] Added to saved');
-                }
-                
-                localStorage.setItem('gubicooLensSavedTools', JSON.stringify(savedTools));
-                updateFavoriteButtonUI(isNowSaved);
-                console.log('[FAVORITE] Updated localStorage:', savedTools);
-            }
-        }
-
-        // Helper function to update UI
-        function updateFavoriteButtonUI(isSaved) {
-            const favoriteIcon = document.getElementById('favoriteIcon');
-            const favoriteText = document.getElementById('favoriteText');
-            
-            if (favoriteIcon) {
-                favoriteIcon.textContent = isSaved ? 'favorite' : 'favorite_border';
-                favoriteIcon.style.color = isSaved ? '#ef4444' : '';
-            }
-            if (favoriteText) {
-                favoriteText.textContent = isSaved ? 'Saved to Favorites' : 'Save to Favorites';
-            }
-        }
-
-        // Make function globally accessible
-        window.toggleToolFavorite = toggleToolFavorite;
     </script>
 </body>
 </html>
